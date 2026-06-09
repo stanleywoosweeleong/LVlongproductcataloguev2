@@ -1,12 +1,16 @@
 /* LV LONG Product Guide — Service Worker
    Offline-first PWA. Bump CACHE version on each content release. */
-var CACHE = 'lvlong-v3';
+var CACHE = 'lvlong-v5';
 
 /* App shell — relative paths so it works under the GitHub Pages subpath
    (https://stanleywoosweeleong.github.io/LVlongproductcataloguev2/) */
 var SHELL = [
   './',
-  './index.html'
+  './index.html',
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png',
+  './icon-maskable.png'
 ];
 
 /* Install: pre-cache the app shell, then activate immediately */
