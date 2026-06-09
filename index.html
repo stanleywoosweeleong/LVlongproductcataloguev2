@@ -562,6 +562,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-wei
   </div>
 <div class="landscape-warn"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 9h20"/></svg><span id="e-landscape">Please rotate to portrait mode</span></div>
 <div class="toast" id="toast"></div>
+<div id="iosHint" style="display:none;position:fixed;left:12px;right:12px;bottom:16px;z-index:9999;background:#fff;border:1.5px solid #1D9E75;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,0.18);padding:14px 16px;max-width:480px;margin:0 auto">
+  <div style="display:flex;align-items:flex-start;gap:12px">
+    <img src="icon-192.png" alt="" style="width:42px;height:42px;border-radius:10px;flex-shrink:0">
+    <div style="flex:1">
+      <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:3px" id="iosHintTitle">Install this app</div>
+      <div style="font-size:12.5px;color:#555;line-height:1.55" id="iosHintBody">Tap the Share button <svg style="display:inline;vertical-align:-3px" width="15" height="15" fill="none" stroke="#1D9E75" stroke-width="2" viewBox="0 0 24 24"><path d="M12 16V4M8 8l4-4 4 4M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg> then choose <strong>"Add to Home Screen"</strong> to use it offline.</div>
+    </div>
+    <button onclick="dismissIosHint()" style="background:none;border:none;font-size:20px;color:#999;cursor:pointer;line-height:1;flex-shrink:0;padding:0 2px">&times;</button>
+  </div>
+</div>
 <button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg></button>
 <div class="overlay" id="overlay" onclick="closeMod(event)">
   <div class="modal"><div class="modal-handle"></div><div id="modBody"></div><button class="cbtn" id="e-close" onclick="closeModDirect()"></button></div>
@@ -2339,7 +2349,7 @@ doCalc();
  document.getElementById('recOut').innerHTML='';
 }
 
-function setLang(l,btn){lang=l;try{localStorage.setItem('lvlong_lang',l);}catch(e){}document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderAll();}
+function setLang(l,btn){lang=l;try{localStorage.setItem('lvlong_lang',l);}catch(e){}document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderAll();if(typeof updateIosHintMsg==='function')updateIosHintMsg();}
 (function(){try{var saved=localStorage.getItem('lvlong_lang');if(saved==='en'){lang='en';var btns=document.querySelectorAll('.lang-btn');if(btns[0])btns[0].classList.add('active');if(btns[1])btns[1].classList.remove('active');}}catch(e){}}());
 function setFilter(cat,el){curCat=cat;document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('active');});el.classList.add('active');doFilter();}
 
@@ -4957,6 +4967,37 @@ function installApp(){
   if(btn){btn.style.display='none';}
  });
 }
+
+// ── iOS install hint (Safari doesn't fire beforeinstallprompt) ──────────────
+function updateIosHintMsg(){
+ var t=document.getElementById('iosHintTitle');
+ var b=document.getElementById('iosHintBody');
+ if(t)t.textContent=lang==='zh'?'安装到主屏幕':'Install this app';
+ if(b)b.innerHTML=lang==='zh'
+  ?'点击分享按钮 <svg style="display:inline;vertical-align:-3px" width="15" height="15" fill="none" stroke="#1D9E75" stroke-width="2" viewBox="0 0 24 24"><path d="M12 16V4M8 8l4-4 4 4M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg> 然后选择 <strong>"添加到主屏幕"</strong>，即可离线使用本应用。'
+  :'Tap the Share button <svg style="display:inline;vertical-align:-3px" width="15" height="15" fill="none" stroke="#1D9E75" stroke-width="2" viewBox="0 0 24 24"><path d="M12 16V4M8 8l4-4 4 4M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg> then choose <strong>"Add to Home Screen"</strong> to use it offline.';
+}
+function dismissIosHint(){
+ var el=document.getElementById('iosHint');
+ if(el)el.style.display='none';
+ try{localStorage.setItem('ll_ioshint','1');}catch(e){}
+}
+(function(){
+ var ua=window.navigator.userAgent;
+ var isIOS=/iPad|iPhone|iPod/.test(ua)&&!window.MSStream;
+ var isStandalone=('standalone' in window.navigator)&&window.navigator.standalone;
+ var alreadyDismissed=false;
+ try{alreadyDismissed=localStorage.getItem('ll_ioshint')==='1';}catch(e){}
+ if(isIOS&&!isStandalone&&!alreadyDismissed){
+  window.addEventListener('load',function(){
+   setTimeout(function(){
+    updateIosHintMsg();
+    var el=document.getElementById('iosHint');
+    if(el)el.style.display='block';
+   },1500);
+  });
+ }
+})();
 
 // ── PWA: Service Worker (real file — reliable offline on all browsers incl. iOS) ──
 if('serviceWorker' in navigator){
