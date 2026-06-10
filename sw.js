@@ -1,6 +1,6 @@
 /* LV LONG Product Guide — Service Worker
    Offline-first PWA. Bump CACHE version on each content release. */
-var CACHE = 'lvlong-v6';
+var CACHE = 'lvlong-v7';
 
 /* App shell — relative paths so it works under the GitHub Pages subpath
    (https://stanleywoosweeleong.github.io/LVlongproductcataloguev2/) */
