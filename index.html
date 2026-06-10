@@ -9,11 +9,13 @@
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-512.png">
 <meta name="theme-color" content="#1D9E75">
+<meta name="color-scheme" content="light">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="LV LONG">
 <style>
+html{color-scheme:light only}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:600;font-size:20px;background:#f5f5f5;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:12px}
 .app{max-width:430px;width:100%;background:#f0f0f0;border-radius:20px;border:0.5px solid #ddd;height:calc(100vh - 24px);max-height:900px;position:relative;display:flex;flex-direction:column;overflow:hidden}
@@ -29,7 +31,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-wei
 .nav-btn.active{color:#1D9E75}
 .screen{display:none;padding:12px;overflow-x:hidden}
 
-@media (prefers-color-scheme:dark){
+@media (prefers-color-scheme:dark) and (min-width:99999px){
   body{background:#1a1a1a}
   .app{background:#242424;border-color:#333}
   .topbar{background:#2d2d2d;border-color:#3a3a3a}
@@ -112,14 +114,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-wei
 }
 .landscape-warn{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:999;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#fff;font-size:17px;text-align:center;padding:24px}
 .landscape-warn svg{opacity:.7}
-.scroll-top{position:fixed;bottom:90px;right:calc(50% - 200px);width:40px;height:40px;border-radius:50%;background:#1D9E75;color:#fff;border:none;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(29,158,117,0.4);z-index:50;touch-action:manipulation;transition:opacity .2s}.scroll-top.show{display:flex}.screens{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;overscroll-behavior:contain;position:relative;scrollbar-width:none;-ms-overflow-style:none}.screens::-webkit-scrollbar{display:none}
+.scroll-top{position:fixed;bottom:84px;right:16px;width:44px;height:44px;border-radius:50%;background:#1D9E75;color:#fff;border:none;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(29,158,117,0.4);z-index:50;touch-action:manipulation;transition:opacity .2s}.scroll-top.show{display:flex}.screens{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;overscroll-behavior:contain;position:relative;scrollbar-width:none;-ms-overflow-style:none}.screens::-webkit-scrollbar{display:none}
 .screen.active{display:block}
 .search-sticky{position:sticky;top:0;z-index:10;background:#f0f0f0;padding:12px 12px 0;margin:-12px -12px 0}.search-box{background:#fff;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:8px;border:0.5px solid #e0e0e0;margin-bottom:8px}
 .search-box input{border:none;background:none;flex:1;font-size:16px;color:#111;outline:none}
-.filter-bar{flex-shrink:0;background:#f0f0f0;border-bottom:0.5px solid #e8e8e8;cursor:grab;user-select:none}.filter-bar.dragging{cursor:grabbing}.filter-grid{display:flex;flex-wrap:nowrap;gap:6px;padding:8px 12px}
-.chip{padding:8px 14px;border-radius:20px;font-size:14px;font-weight:500;border:0.5px solid #ccc;background:#fff;color:#666;cursor:pointer;white-space:nowrap;min-height:36px}
+.filter-bar{flex-shrink:0;background:#f0f0f0;border-bottom:0.5px solid #e8e8e8;user-select:none}.filter-grid{display:flex;flex-wrap:wrap;gap:5px;padding:8px 12px}
+.chip{padding:6px 11px;border-radius:18px;font-size:12.5px;font-weight:600;border:0.5px solid #ccc;background:#fff;color:#666;cursor:pointer;white-space:nowrap;min-height:32px;display:inline-flex;align-items:center}
 .chip.active{background:#1D9E75;color:#fff;border-color:#1D9E75}
-.chip-count{display:inline-flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.12);color:inherit;border-radius:50%;width:18px;height:18px;font-size:12px;font-weight:600;margin-left:5px;flex-shrink:0}
+.chip-count{display:inline-flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.12);color:inherit;border-radius:50%;width:17px;height:17px;font-size:11px;font-weight:700;margin-left:5px;flex-shrink:0}
 .chip.active .chip-count{background:rgba(255,255,255,0.3);color:#fff}
 .pcard{background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:8px;border:0.5px solid #e0e0e0;cursor:pointer}
 .pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
@@ -230,7 +232,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-wei
 .clone-adj{background:#FFF7ED;border-top:0.5px solid #FED7AA;padding:8px 12px;font-size:16px;color:#633806;line-height:1.6}
 .clone-adj-lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#C2410C;margin-bottom:3px}
 .clone-adj strong{color:#7C2D12}
-@media (prefers-color-scheme:dark){
+@media (prefers-color-scheme:dark) and (min-width:99999px){
   .clone-btn{background:#2d2d2d;border-color:#444;color:#aaa}
   .clone-btn.active{background:#0F6E56;border-color:#0F6E56;color:#fff}
   .clone-card{border-color:#3a3a3a}
@@ -342,7 +344,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-wei
 .walegrid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin:10px 0}
 .wale-cell{text-align:center;padding:8px 4px;border-radius:8px;font-size:13px;font-weight:700}
 .wale-letter{font-size:22px;font-weight:900;display:block;margin-bottom:2px}
-@media (prefers-color-scheme:dark){
+@media (prefers-color-scheme:dark) and (min-width:99999px){
  .prot-body{border-color:#333}
  .prot-row{color:#ccc;border-color:#333}
  .prot-warn-box{background:#2d1010;color:#FCA5A5}
@@ -400,7 +402,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-wei
 .antag-warn{background:#FEF3C7;border-color:#FCD34D}
 .antag-ok .antag-pair{color:#14532D}
 .antag-ok{background:#F0FDF4;border-color:#86EFAC}
-@media (prefers-color-scheme:dark){
+@media (prefers-color-scheme:dark) and (min-width:99999px){
   .chel-hero{background:linear-gradient(135deg,#0a4a38 0%,#1D9E75 100%)}
   .chel-tab{background:#2d2d2d;border-color:#444;color:#aaa}
   .chel-tab.active{background:#1D9E75;border-color:#1D9E75;color:#fff}
@@ -452,7 +454,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-wei
 .form-row-icon{flex-shrink:0;width:18px;text-align:center}
 .form-row-text{flex:1;color:#065F46;line-height:1.55}
 .form-row-text strong{color:#14532D;font-weight:600}
-@media (prefers-color-scheme:dark){
+@media (prefers-color-scheme:dark) and (min-width:99999px){
   .form-box{background:#0D2818;border-color:#166534}
   .form-row{border-color:#14532D}
   .form-row-text{color:#86EFAC}
@@ -3947,59 +3949,8 @@ function scrollToTop(){
 }
 
 
-// ── Filter bar drag/swipe-to-scroll ───────────────────────────────────────
-(function(){
- var bar=document.getElementById('filterBar');
- if(!bar)return;
- // Set overflow via JS to bypass CSS cascade
- bar.style.overflowX='auto';
- bar.style.webkitOverflowScrolling='touch';
- // Hide scrollbar
- bar.style.scrollbarWidth='none';
- bar.style.msOverflowStyle='none';
- var st=document.createElement('style');
- st.textContent='#filterBar::-webkit-scrollbar{display:none}';
- document.head.appendChild(st);
-
- // Mouse drag (desktop)
- var isDown=false,startX=0,scrollLeft=0,moved=false;
- bar.addEventListener('mousedown',function(e){
-  isDown=true;moved=false;bar.classList.add('dragging');
-  startX=e.pageX;scrollLeft=bar.scrollLeft;
- });
- document.addEventListener('mouseup',function(){
-  isDown=false;bar.classList.remove('dragging');
- });
- bar.addEventListener('mousemove',function(e){
-  if(!isDown)return;
-  var dx=e.pageX-startX;
-  if(Math.abs(dx)>3)moved=true;
-  bar.scrollLeft=scrollLeft-dx;
- });
- // Prevent chip click firing after a drag
- bar.addEventListener('click',function(e){
-  if(moved){e.stopPropagation();e.preventDefault();moved=false;}
- },true);
-
- // Touch swipe (mobile) — manual handling for reliable cross-browser scroll
- var touchStartX=0,touchScrollLeft=0,touchMoved=false;
- bar.addEventListener('touchstart',function(e){
-  touchStartX=e.touches[0].clientX;
-  touchScrollLeft=bar.scrollLeft;
-  touchMoved=false;
- },{passive:true});
- bar.addEventListener('touchmove',function(e){
-  var dx=e.touches[0].clientX-touchStartX;
-  if(Math.abs(dx)>5){
-   touchMoved=true;
-   bar.scrollLeft=touchScrollLeft-dx;
-   e.preventDefault(); // prevent page scroll while swiping chips
-  }
- },{passive:false});
- bar.addEventListener('touchend',function(e){
-  if(touchMoved)e.stopPropagation();
- });
-})();
+// ── Filter bar: chips wrap into rows (no horizontal scroll needed) ─────────
+// (Previous drag/swipe-to-scroll handler removed — chips now flex-wrap into 2 rows.)
 
 // ── Clone bar drag/swipe-to-scroll ────────────────────────────────────────
 (function(){
